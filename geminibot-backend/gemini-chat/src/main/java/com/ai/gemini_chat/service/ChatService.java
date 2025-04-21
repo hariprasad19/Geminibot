@@ -22,7 +22,6 @@ public class ChatService {
     }
 
     public String getAnswer(String question){
-        //Request payload
         Map<String, Object> requestBody=Map.of(
                 "contents",new Object[] {
                         Map.of("parts",new Object[]{
@@ -31,7 +30,6 @@ public class ChatService {
                 }
         );
 
-        //Make API Call
         String response = webClient.post()
                 .uri(geminiApiUrl+geminiApiKey)
                 .header("Content-Type","application/json")
@@ -40,7 +38,6 @@ public class ChatService {
                 .bodyToMono(String.class)
                 .block();
 
-        //Return response
         return response;
     }
 }
